@@ -15,8 +15,12 @@
   const records = ref([])
   
   onMounted(async () => {
-    const response = await axios.get('http://cms-una.unaux.com/:bookstore/api/content/items/records')
-    records.value = response.data
+    try {
+      const response = await axios.get('http://cms-una.unaux.com/jazz-music/api/content/items/records')
+      records.value = response.data
+    } catch (error) {
+      console.error('Error al obtener la lista de disqueras:', error)
+    }
   })
   </script>
   

@@ -33,8 +33,12 @@
   const route = useRoute()
   
   onMounted(async () => {
-    const response = await axios.get(`http://cms-una.unaux.com/:bookstore/api/content/item/records/${route.params.id}`)
-    record.value = response.data
+    try {
+      const response = await axios.get(`http://cms-una.unaux.com/jazz-music/api/content/item/records/${route.params.id}`)
+      record.value = response.data
+    } catch (error) {
+      console.error('Error al obtener los detalles de la disquera:', error)
+    }
   })
   </script>
   
