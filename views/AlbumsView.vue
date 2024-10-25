@@ -32,7 +32,7 @@ export default {
     async fetchAlbums() {
       try {
         const response = await axios.get("http://cms-una.unaux.com/:jazz-music/api/content/items/albums");
-        this.albums = response.data.entries; // Ajustado para la estructura de Cockpit
+        this.albums = response.data.entries; 
       } catch (error) {
         console.error("Error fetching albums:", error);
       }

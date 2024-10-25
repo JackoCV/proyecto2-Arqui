@@ -31,7 +31,7 @@ export default {
   methods: {
     async fetchArtists() {
       try {
-        const response = await axios.get("http://cms-una.unaux.com/:jazz-music/api/content/items/artists");
+        const response = await axios.get("http://cms-una.unaux.com/api/content/items/artists");
         this.artists = response.data;
       } catch (error) {
         console.error("Error fetching artists:", error);

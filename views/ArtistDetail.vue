@@ -37,13 +37,13 @@ export default {
   methods: {
     async fetchArtist() {
       try {
-        const response = await axios.get(`http://cms-una.unaux.com/:jazz-music/api/content/item/artists/${this.id}`);
+        const response = await axios.get(`http://cms-una.unaux.com/api/content/item/artists/${this.id}`);
         this.artist = response.data;
 
         if (this.artist.albums && Array.isArray(this.artist.albums)) {
           const albumPromises = this.artist.albums.map(async (albumId) => {
             try {
-              const albumResponse = await axios.get(`http://cms-una.unaux.com/:jazz-music/api/content/item/albums/${albumId}`);
+              const albumResponse = await axios.get(`http://cms-una.unaux.com/api/content/item/albums/${albumId}`);
               return albumResponse.data;
             } catch (error) {
               console.warn(`Álbum con ID ${albumId} no encontrado`);

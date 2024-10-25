@@ -1,7 +1,7 @@
 <template>
   <div v-if="artist" class="artist-detail">
     <h2>{{ artist.name }}</h2>
-    <img :src="artist.image" :alt="artist.name" class="artist-image" />
+    <img v-if="artist.image" :src="artist.image" :alt="artist.name" class="artist-image" />
     <p><strong>Fecha de nacimiento:</strong> {{ artist.birthDate }}</p>
     <p><strong>Nacionalidad:</strong> {{ artist.nationality }}</p>
     <p><strong>Instrumento:</strong> {{ artist.instrument }}</p>
@@ -56,13 +56,13 @@ export default {
   methods: {
     async fetchArtist() {
       try {
-        const response = await axios.get(`http://cms-una.unaux.com/:jazz-music/api/content/item/artists/${this.id}`);
+        const response = await axios.get(`http://cms-una.unaux.com/api/content/item/artists/${this.id}`);
         this.artist = response.data;
 
         if (Array.isArray(this.artist.albums)) {
           const albumPromises = this.artist.albums.map(async (albumId) => {
             try {
-              const albumResponse = await axios.get(`http://cms-una.unaux.com/:jazz-music/api/content/item/albums/${albumId}`);
+              const albumResponse = await axios.get(`http://cms-una.unaux.com/api/content/item/albums/${albumId}`);
               return albumResponse.data;
             } catch (error) {
               console.warn(`Álbum con ID ${albumId} no encontrado`);
@@ -76,7 +76,7 @@ export default {
         if (Array.isArray(this.artist.label_records)) {
           const labelPromises = this.artist.label_records.map(async (labelId) => {
             try {
-              const labelResponse = await axios.get(`http://cms-una.unaux.com/:jazz-music/api/content/item/label_records/${labelId}`);
+              const labelResponse = await axios.get(`http://cms-una.unaux.com/api/content/item/label_records/${labelId}`);
               return labelResponse.data;
             } catch (error) {
               console.warn(`Sello discográfico con ID ${labelId} no encontrado`);
@@ -97,7 +97,7 @@ export default {
     async deleteArtist() {
       if (confirm('¿Estás seguro de que quieres eliminar este artista?')) {
         try {
-          await axios.delete(`http://cms-una.unaux.com/:jazz-music/api/content/item/artists/${this.id}`);
+          await axios.delete(`http://cms-una.unaux.com/api/content/item/artists/${this.id}`);
           this.$router.push({ name: 'ArtistsView' });
         } catch (error) {
           console.error('Error deleting artist:', error);
@@ -107,6 +107,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
