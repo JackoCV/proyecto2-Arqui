@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       artist: null,
-      artistAlbums: [], // Álbumes del artista
+      artistAlbums: [], 
     };
   },
   created() {

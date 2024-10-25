@@ -1,5 +1,10 @@
-# cockpit-frontend
+Proyecto 2 Arquitectura
 
+Jacksem Cortes
+Caleb Sanchez
+
+# cockpit-frontend
+https://proyecto2-jacksem-caleb.netlify.app/records
 ## Build Setup
 
 ```bash
